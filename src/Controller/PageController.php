@@ -27,10 +27,8 @@ class PageController extends AbstractController
             return $this->redirectToRoute('home');
         }
 
-        $comments = $entityManager->getRepository(Comment::class)->findBy([], ['id' => 'DESC']);
-
         return $this->render('home.html.twig', [
-            'comments' => $comments,
+            'comments' => $entityManager->getRepository(Comment::class)->findBy([], ['id' => 'DESC']),
             'form'     => $form->createView()
         ]);
     }
